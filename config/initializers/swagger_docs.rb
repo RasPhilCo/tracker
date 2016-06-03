@@ -8,3 +8,10 @@ Swagger::Docs::Config.register_apis({
     formatting: :pretty
   }
 })
+
+class Swagger::Docs::Config
+  def self.transform_path(path, api_version)
+    path = "v1/projects/{project_id}/tasks" if (/^v1\/tasks$/).match(path)
+    path
+  end
+end

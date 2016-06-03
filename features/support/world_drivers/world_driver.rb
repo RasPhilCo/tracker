@@ -18,8 +18,22 @@ class WorldDriver
     end
   end
 
+  def given_tasks_for_project count: nil, project_id: nil
+    if count.present?
+      FactoryGirl.create_list :task, count.to_i, project: Project.find(project_id)
+    elsif data.present?
+      ActiveCucumber.create_many Task, data
+    else
+      fail 'No tasks given'
+    end
+  end
+
   def given_project data
     ActiveCucumber.create_one Project, data
+  end
+
+  def given_task data
+    ActiveCucumber.create_one Task, data
   end
 
   def check_unexpected_errors

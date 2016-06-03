@@ -19,3 +19,6 @@
 # Ignore gemset files
 /.ruby-gemset
 /.ruby-version
+
+# Ignore Swagger Docs
+/public/api
