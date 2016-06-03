@@ -7,6 +7,16 @@ When(/^I request the (.*) list with parameters:$/) do |collection_type, params|
   d.request_list collection_type, params
 end
 
+When(/^I request the nested (.*) list for the (.*) with id:$/) do |collection_type, parent_type, params|
+  params = vertical_table params
+  d.request_nested_list collection_type, parent_type, params
+end
+
+When(/^I request the nested (.*) list for the (.*) with parameters:$/) do |collection_type, parent_type, params|
+  params = vertical_table params
+  d.request_nested_list collection_type, parent_type, params
+end
+
 Then(/^I get (\d+) (.*) back$/) do |count, kind|
   count = count.to_i
   kind = kind.pluralize.to_sym
