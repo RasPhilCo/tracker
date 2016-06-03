@@ -22,7 +22,8 @@ class ApiWorldDriver < WorldDriver
   end
 
   def create_project attributes
-    result = post '/v1/projects', attributes
+    result = post '/v1/projects', {project: attributes}
+    body = JSON.parse(result.body).deep_symbolize_keys
     if body[:errors].present?
       @errors.push *body[:errors]
     end
